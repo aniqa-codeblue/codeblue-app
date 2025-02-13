@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Neon Sign</title>
+    <link rel="stylesheet" href="css1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="left-panel">
+            <div class="toggle-switch">
+                <div class="switch-inner"></div>
+            </div>
+            <div class="neon-preview">
+                <span class="dim-text">4in</span>
+                <p class="neon-text">Smash Here!</p>
+                <span class="dim-text">27in</span>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <h1>Unleash Your Creativity</h1>
+
+            <div class="input-group">
+                <label for="neon-text">Enter Your Text</label>
+                <input type="text" id="neon-text" placeholder="Smash here!" minlength="3" required>
+            </div>
+
+            <div class="character-count-container">
+                <div class="icon-container">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-equals"></i>
+                </div>
+                <p class="character-count-message">3 or more characters are required for this size, please add more characters.</p>
+            </div>
+
+            <h2>Pick Your Font</h2>
+
+            <div class="font-options">
+                <button class="font-button">Buralbry</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Buralbry</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button active">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Buralbry</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Buralbry</button>
+                <button class="font-button">Barcelony</button>
+            </div>
+
+            <p class="character-count-message">3 or characters are required for this size, please add characters.</p>
+            <button class="done-button" type="submit">Done</button>
+        </div>
+        <div class="bottom-panel">
+            <button class="chat-button">
+                <i class="far fa-comment-dots"></i>
+            </button>
+            <div class="bottom-images">
+                <div class="image-selection"></div>
+                <div class="image-selection"></div>
+                <div class="image-selection"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script1.js"></script>
+</body>
+</html>

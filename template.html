@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Text Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+        }
+        .left-panel {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40%;
+        }
+        .neon-preview {
+            background-color: black;
+            padding: 50px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        #neon-text {
+            font-size: 72px;
+            color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+            font-weight: lighter;
+        }
+        .sidebar {
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            align-items: center;
+            width: 100px;
+            height: 100%;
+        }
+        .font-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .font-btn {
+            background-color: transparent;
+            color: black;
+            border: 0.5px solid black;
+            padding-left: 13px;
+            padding-right: 13px;
+            padding-top: 11px;
+            padding-bottom: 11px;
+            cursor: pointer;
+            border-radius: 18px;
+            transition: 0.3s;
+        }
+        .font-btn:hover {
+            background-color: #ff00ff;
+            color: white;
+            border-color: #ff00ff;
+        }
+        .toolbar {
+            display: flex;
+            margin-left: 5px;
+            justify-content: left;
+            gap: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .toolbar-btn {
+            color: black;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .toolbar-btn:hover {
+            background-color: #ff00ff;
+            color: white;
+        }
+        #done-btn {
+            background-color: #ff00ff;
+            color: white;
+            border: none;
+            font-size: 14px;
+            padding: 15px;
+            cursor: pointer;
+            width: 93%;
+            margin-left: 15px;
+            margin-right:15px;
+            border-radius: 5px;
+            margin-top: 5px;
+            text-align: center;
+        }
+        .customtextlabel {
+            text-align: left;
+            margin-bottom: 50px;
+            color: #ff00ff;
+        }
+        #custom-text {
+            width: 90%; /* Increased width */
+            padding: 15px;
+            border: 2px solid #ff00ff;
+            border-radius: 10px; /* Rounded corners */
+            font-size: 16px;
+            outline: none;
+        }
+        .sidebar h2, .sidebar h3, #customtextlabel {
+            color: #ff00ff; /* Pink color */
+        }
+        h2 {
+            font-size: 30px;
+        }
+        /* Instruction Blocks */
+        .instruction-block {
+            padding: 5px;
+            margin: 13px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .instruction1 {
+            background-color: #ff00ff;
+            color: white;
+        }
+        .instruction2 {
+            background-color: white;
+            color: #ff00ff;
+            border: 2px solid white;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Page Title -->
+    <div class="container">
+        <div class="left-panel">
+
+            <div class="neon-preview">
+                <p id="neon-text">Smash Here!</p>
+            </div>
+        </div>
+        <div class="sidebar">
+            <h2>Unleash Your Creativity</h2>
+            <p id="customtextlabel">Enter Your Text</p>
+            <textarea name="details" id="custom-text"  placeholder="Enter your text here e.g; Smash Here!" rows="4"></textarea>
+            
+            <div class="toolbar">
+                <button class="toolbar-btn"><i class="fa-solid fa-align-left"></i></button>
+                <button class="toolbar-btn"><i class="fa-solid fa-align-center"></i></button>
+                <button class="toolbar-btn"><i class="fa-solid fa-align-right"></i></button>
+            </div>
+            <div class="instruction-block instruction1">
+                <p>3 or more characters are required for this size, please add more characters.</p>
+            </div>
+            
+            <h3>Pick Your Font</h3>
+            <div class="font-options">
+                <button class="font-btn" data-font="Barcelony">Barcelony</button>
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+                <button class="font-btn" data-font="Barcelony">Barcelony</button>
+
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+                <button class="font-btn" data-font="Barcelony">Barcelony</button>
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+                <button class="font-btn" data-font="Barcelony">Barcelony</button>
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+                <button class="font-btn" data-font="Barcelony">Barcelony</button>
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+                <button class="font-btn" data-font="Barcelony">Barcelony</button>
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+                <button class="font-btn" data-font="Barcelony">Barcelony</button>
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+                <button class="font-btn" data-font="Barcelony">Barcelony</button>
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+                <button class="font-btn" data-font="Barcelony">Barcelony</button>
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+                <button class="font-btn" data-font="Barcelony">Barcelony</button>
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+                <button class="font-btn" data-font="Barcelony">Barcelony</button>
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+                <button class="font-btn" data-font="Barcelony">Barcelony</button>
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+                
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+                <button class="font-btn" data-font="Barcelony">Barcelony</button>
+                <button class="font-btn" data-font="Dolevita">Dolevita</button>
+            </div>
+            <div class="instruction-block instruction2">
+                <p>3 or more characters are required for this size, please add more characters.</p>
+            </div>
+                <button id="done-btn">Done</button>
+            
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

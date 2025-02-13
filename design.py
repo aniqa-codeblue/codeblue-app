@@ -10,7 +10,7 @@ import string
 import threading
 import google.generativeai as genai
 
-class ModernDesktopApp(ctk.CTk):
+class codeblueapp(ctk.CTk):
     def __init__(self):
         super().__init__()
 
@@ -465,5 +465,5 @@ class ModernDesktopApp(ctk.CTk):
             messagebox.showerror("Save File", "No HTML file generated yet. Please save the code first.")
 
 if __name__ == "__main__":
-    app = ModernDesktopApp()
+    app = codeblueapp()
     app.mainloop()

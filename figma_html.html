@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Neon Sign</title>
+    <style>
+        /* CSS Reset */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Layout */
+        .neon-design-container {
+            display: flex;
+            height: 100vh;
+            /* Use viewport height */
+        }
+
+        .neon-preview {
+            flex: 2;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .neon-settings {
+            flex: 1;
+            background-color: #111;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Neon Effect Styling */
+        .neon-text {
+            font-size: 3rem;
+            color: #f0f;
+            text-shadow: 0 0 10px #f0f, 0 0 20px #f0f, 0 0 30px #f0f;
+        }
+
+        /* Form Elements Styling */
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #f0f;
+            background-color: #222;
+            color: #fff;
+        }
+
+        .font-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .font-option {
+            padding: 8px 12px;
+            border: 1px solid #555;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .font-option:hover,
+        .font-option.selected {
+            background-color: #f0f;
+            color: #000;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #f0f;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c0c;
+            color: #000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .neon-design-container {
+                flex-direction: column;
+            }
+
+            .neon-settings {
+                order: -1;
+            }
+
+            .neon-text {
+                font-size: 2rem;
+            }
+        }
+
+        /* Toggler */
+        .toggle-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            /* Adjust position as needed */
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #f0f;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #f0f;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="neon-design-container">
+        <div class="neon-preview">
+            <div class="toggle-container">
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <h1 class="neon-text">Smash Here!</h1>
+        </div>
+        <div class="neon-settings">
+            <h2>Unleash Your Creativity</h2>
+            <label for="neonText">Enter Your Text</label>
+            <input type="text" id="neonText" name="neonText" placeholder="Smash here!" minlength="3" required>
+            <p style="color: #f0f;">3 or more characters are required for this size, please add more characters.</p>
+            <h3>Pick Your Font</h3>
+            <div class="font-options">
+                <div class="font-option">Barcelony</div>
+                <div class="font-option">Dolcivita</div>
+                <div class="font-option">Barcelony</div>
+                <div class="font-option">Dolcivita</div>
+                <div class="font-option">Barcelony</div>
+                <div class="font-option">Dolcivita</div>
+                <div class="font-option selected">Barcelony</div>
+                <div class="font-option">Barcelony</div>
+                <div class="font-option">Dolcivita</div>
+                <div class="font-option">Barcelony</div>
+                <div class="font-option">Dolcivita</div>
+                <div class="font-option">Barcelony</div>
+                <div class="font-option">Barcelony</div>
+                <div class="font-option">Dolcivita</div>
+                <div class="font-option">Barcelony</div>
+                <div class="font-option">Dolcivita</div>
+                <div class="font-option">Barcelony</div>
+                <div class="font-option">Barcelony</div>
+            </div>
+            <p style="color: #f0f;">3 or characters are required for this size, please add characters.</p>
+            <button type="submit">Done</button>
+        </div>
+    </div>
+    <script>
+        const neonText = document.getElementById('neonText');
+        const neonPreview = document.querySelector('.neon-text');
+        neonText.addEventListener('input', function () {
+            neonPreview.textContent = this.value;
+        });
+        // Font Selection
+        const fontOptions = document.querySelectorAll('.font-option');
+
+        fontOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                // Remove 'selected' class from all options
+                fontOptions.forEach(opt => opt.classList.remove('selected'));
+
+                // Add 'selected' class to the clicked option
+                this.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+
+</html>

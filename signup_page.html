@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Signs Inc</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap");
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: black;
+            color: white;
+            padding: 12px 50px;
+        }
+        .logo {
+            font-size: 50px;
+            font-weight: bold;
+            margin-left: 150px;
+            font: Quicksand;
+            color: #00aaff;
+        }
+        .logo span {
+            color: white;
+            font: Quicksand;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            margin-top: 8px;
+            margin-bottom: 5px; /* Space between email & phone */
+        }
+
+        .contact-info .phone {
+            margin-bottom: 8px;
+        }
+        main {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            max-width: 1700px;
+        }
+        .content {
+            max-width: 40%;
+            text-align:left;
+            margin-left: 250px;
+        }
+        h1 {
+            font-size: 60px;
+            font-family: fantasy;
+            font-weight: lighter;
+            padding-bottom: 0;
+            margin-top: 6px;
+            margin-bottom: 0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 25px;
+        }
+        ul li {
+            font-size: 20px;
+            padding: 5px;
+            margin-bottom: 5px;
+            font-family: monospace;
+        }
+        .gallery {
+            display: flex;
+            gap: 10px;
+            
+        }
+        .gallery img {
+            width: 120px;
+            height: auto;
+            border-radius: 8px;
+        }
+        .form-container {
+            background: white;
+            padding-right: 60px;
+            padding-left: 60px;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 5px 5px 10px 10px rgba(0.137, 0.137, 0.137, 0.16);
+            max-width: 70%;
+            margin-right: 55px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-headings {
+            font-size: 13px;
+            text-align: center;
+            font-weight: bold;
+        }
+        textarea, button{
+            margin-bottom: 5px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+        label {
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 20px;
+            font-size: 13px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+
+        .image-headings {
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+        }
+        /* Container holding the stars */
+        .stars {
+            display: inline-block;
+            vertical-align:bottom; /* so text aligns nicely with the stars */
+            font-size: 2px;
+        }
+
+        /* Full star styling */
+        .star {
+            color: #f5c518;        /* Gold-like color for the filled portion */
+            font-size: 1.5rem;     /* Adjust as needed */     /* Spacing between stars */
+            vertical-align: middle;
+        }
+
+        /* Half star effect */
+        .star.half {
+            overflow: hidden;
+            vertical-align: middle;
+            width: 0.6em;          /* "Half" the width to show only half of the star */
+        }
+        .rating-text {
+            font-size: 12px;
+            position: relative;
+            vertical-align:middle;
+            margin-bottom: 15px;
+        }
+        input[type=checkbox]{
+            vertical-align:sub;
+            position: relative;
+        }
+        .upload-box {
+            width: 100%;
+            max-width: 500px;
+            height: 100px;
+            border: 2px dashed #00aaff;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            padding: 10px;
+        }
+        .upload-box input {
+            border: none;
+            font-display:none;
+        }
+        .upload-box:hover {
+            background-color: #eef3ff;
+            border-color: #0056b3;
+        }
+        .error-message {
+            font-size: 13px;
+            margin: 5px;
+        }
+        .uploadicon {
+            position:relative;
+            vertical-align: middle;
+            width: 25px;
+            height: 25px;
+        }
+        .input-icons i {
+            position: absolute;
+            vertical-align: bottom;
+        }
+        .icon {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            padding-right: 40px;
+            min-width: 20px;
+        }
+        .fa-envelope {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            padding-right: 40px;
+            min-width: 20px;
+        }
+        .fa-phone {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            padding-right: 40px;
+            min-width: 20px;
+        }
+        .input-field {
+            width: 90%;
+            text-align: center;
+            margin-bottom: 5px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">signs.<span>inc</span></div>
+        <div class="contact-info">
+            <a href="mailto:info@signs.inc">info@signs.inc</a>
+            <a href="tel:+12059007525" class="phone">+1 (205)-900-7525</a>
+        </div>
+    </header>
+    <main>
+        <section class="content">
+                <div class="stars">
+                  <!-- Full stars -->
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <!-- Half star -->
+                  <span class="star half">&#9733;</span>
+                </div>
+                <p class="rating-text">4.9/5 rating from 140+ business owners</p>
+
+            <h1>GET A HIGH-QUALITY, CUSTOM SIGN FOR YOUR BUSINESS</h1>
+            <ul>
+                <li>Expertly-crafted signage customized for your business</li>
+                <li>Fastest response in the industry - ships within 10 days</li>
+                <li>8+ years of extensive industry experience</li>
+                <li>Comes with 2-year warranty for all signs</li>
+                <li>For quotations and inquiries, call us at <strong>205-900-7525</strong></li>
+            </ul>
+            <div class="gallery">
+                <img src="sign1.jpg" alt="Sign 1">
+                <img src="sign2.jpg" alt="Sign 2">
+                <img src="sign3.jpg" alt="Sign 3">
+            </div>
+        </section>
+        <section class="form-container">
+            <div class="form-headings">
+                <p>Get Your Free Custom Signage Mockup & Quote in as fast as 2 hours!</p>
+                <p>Remember to check you email for next steps</p>
+            </div>
+            
+            <form id="sign_submit_form">
+                <div class="input-icons">
+                    <label for="name">Name</label>
+                    <i class="fa fa-user icon"></i>
+                    <input type="text" id="uname" class="input-field">
+                </div>
+                <small id="name_error" class="error-message" style="color:red"></small>
+                <div class="input-icons">
+                    <label for="email">Email</label>
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="uemail" class="input-field">
+                </div> 
+                <small id="email_error" class="error-message" style="color:red"></small>
+                <div class="input-icons">
+                    <label for="number">Number</label>
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="tel" id="unum" class="input-field">
+                </div>
+                <small id="num_error" class="error-message" style="color:red"></small>
+                
+                
+                <div class="image-headings">
+                    <span>Upload an Image</span>
+                    <p>Take your time to attach the perfect image!</p>
+                </div>
+                <div class="upload-container">
+                    <label for="upload" class="upload-box">
+                        <input type="file" name="image" accept="image/*">
+                        <img src="upload-solid.svg" alt="upload Icon" class="uploadicon">
+                    </label>
+                </div>
+                
+                <Label><input type="checkbox" name="checkmark">    Submit Text or URL instead of image</Label>
+                <textarea name="details" id="customdetail"  placeholder="Describe your sign type, budget, size, etc." rows="3"></textarea>
+                <small id="detail_error" class="error-message" style="color:red"></small>
+
+                <button type="submit">Submit & Get Free Mockup & Quote</button>
+            </form>
+        </section>
+    </main>
+    <script src="signup_page.js"></script>
+</body>
+</html>

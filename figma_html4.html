@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Neon Sign Creator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Left Side - Neon Preview */
+        .left-side {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .neon-container {
+            text-align: center;
+        }
+
+        .neon-text {
+            font-size: 4em;
+            color: #f0f;
+            text-shadow:
+                0 0 5px #f0f,
+                0 0 10px #f0f,
+                0 0 20px #f0f,
+                0 0 30px #f0f,
+                0 0 40px #f0f;
+        }
+
+        /* Right Side - Customization Options */
+        .right-side {
+            flex: 1;
+            background-color: #111;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .right-side h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #f0f;
+            background-color: #222;
+            color: #fff;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="text"]:invalid {
+            border-color: red;
+        }
+
+        .font-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+        }
+
+        .font-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .font-button.selected {
+            background-color: #f0f;
+            color: #000;
+        }
+
+        .validation-message {
+            color: yellow;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        .done-button {
+            background-color: #f0f;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .left-side,
+            .right-side {
+                flex: 1;
+                width: 100%;
+            }
+        }
+
+        /* Additional styling for the toggle button and prices */
+        .toggle-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .prices-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: right;
+        }
+
+        /* Add styling for the chat button and bottom images here */
+
+        /* Additional Styling for Preview */
+        .left-side::before,
+        .left-side::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(255, 0, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+        }
+
+        /* Chat button styling */
+        .chat-button {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* Image options at the bottom */
+        .image-options {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .image-option {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .image-option:hover,
+        .image-option.selected {
+            border-color: #f0f;
+        }
+
+        .image-option img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /*  Added css for Title on top*/
+        .neon-title {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Toggle Button Styling */
+        .toggle-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-label {
+            margin-right: 10px;
+            color: #fff;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #f0f;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #f0f;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="left-side">
+        <div class="toggle-container">
+            <label class="toggle-label">Toggle</label>
+            <label class="toggle-switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="prices-container">
+            <div>$0.00</div>
+            <div>$0.00</div>
+        </div>
+
+        <div class="neon-container">
+            <h1 class="neon-title">CREATE YOUR OWN CUSTOM NEON</h1>
+            <p class="neon-text" id="neonText">Smash Here!</p>
+        </div>
+        <button class="chat-button">Chat</button>
+
+        <div class="image-options">
+            <div class="image-option selected">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                    alt="Image 1">
+            </div>
+            <div class="image-option">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                    alt="Image 2">
+            </div>
+            <div class="image-option">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                    alt="Image 3">
+            </div>
+        </div>
+    </div>
+
+    <div class="right-side">
+        <h2>Unleash Your Creativity</h2>
+
+        <div class="form-group">
+            <label for="neonTextInput">Enter Your Text</label>
+            <input type="text" id="neonTextInput" name="neonText" placeholder="Smash Here!" minlength="3" required>
+            <p id="textValidationMessage" class="validation-message"></p>
+        </div>
+        <p> ==
+        <p>
+            <p class="validation-message">3 or more characters are required for this size, please add more characters.
+        </p>
+
+        <div class="form-group">
+            <label>Pick Your Font</label>
+            <div class="font-options">
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button selected">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Barcelony</button>
+                <button class="font-button">Dolcivita</button>
+                <button class="font-button">Barcelony</button>
+
+            </div>
+        </div>
+        <p class="validation-message">3 or characters are required for this size, please add characters.</p>
+
+        <button class="done-button">Done</button>
+    </div>
+
+    <script>
+        const neonTextInput = document.getElementById('neonTextInput');
+        const neonText = document.getElementById('neonText');
+        const textValidationMessage = document.getElementById('textValidationMessage');
+
+        neonTextInput.addEventListener('input', function () {
+            neonText.textContent = this.value;
+            if (this.validity.valid) {
+                textValidationMessage.textContent = '';
+            } else {
+                textValidationMessage.textContent = 'Please enter at least 3 characters.';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

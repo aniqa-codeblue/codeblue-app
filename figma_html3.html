@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Neon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            min-height: 100vh;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Left side (Neon Preview) */
+        .left-side {
+            flex: 2;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .neon-preview{
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .top-bar{
+            display: flex;
+            width: 100%;
+            height: 50px;
+            justify-content: space-between;
+        }
+
+        /* Right side (Form) */
+        .right-side {
+            flex: 1;
+            background-color: #111;
+            padding: 20px;
+            color: #fff;
+            overflow-y: auto;
+        }
+
+        .right-side h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #888;
+            background-color: #222;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .font-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .font-button {
+            background-color: #eee;
+            color: #333;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .font-button:hover {
+            background-color: #ddd;
+        }
+
+        .font-button.selected {
+            background-color: magenta;
+            color: white;
+        }
+
+        .done-button {
+            background-color: magenta;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .done-button:hover {
+            background-color: #ff66c4;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .left-side, .right-side {
+                flex: 1;
+            }
+        }
+        .bottom-bar{
+            display: flex;
+            width: 100%;
+            height: 50px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .bottom-bar .icons-left{
+            display: flex;
+            align-items: center;
+        }
+        .bottom-bar .icons-left .icon{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+         .bottom-bar .icons-left .icon:hover{
+            background-color: #333;
+        }
+        .bottom-bar .icons-right{
+            display: flex;
+            align-items: center;
+        }
+        .bottom-bar .icons-right .icon{
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: #222;
+            margin-left: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .bottom-bar .icons-right .icon:hover{
+            background-color: #333;
+        }
+        .neon-preview{
+            color: magenta;
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px magenta;
+        }
+        .top-bar .toggle-switch{
+            width: 60px;
+            height: 30px;
+            background-color: #222;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .top-bar .toggle-switch .switch{
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: orange;
+            transition: transform 0.3s;
+        }
+        .top-bar .toggle-switch.on .switch{
+            transform: translateX(30px);
+        }
+        .error-message{
+            color: red;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        .icon-button{
+            background-color: #eee;
+            color: #333;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .icon-button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <div class="top-bar">
+                <div class="toggle-switch">
+                    <div class="switch"></div>
+                </div>
+                <div>
+                    $0.00
+                    <br>
+                    $0.00
+                </div>
+            </div>
+            <div class="neon-preview">
+                Smash Here!
+            </div>
+            <div class="bottom-bar">
+                <div class="icons-left">
+                    <div class="icon">
+                        <i class="fa fa-comment"></i>
+                    </div>
+                </div>
+                <div class="icons-right">
+                    <div class="icon"></div>
+                    <div class="icon"></div>
+                    <div class="icon"></div>
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <h2>Unleash Your Creativity</h2>
+            <form id="neonForm">
+                <div class="form-group">
+                    <label for="neonText">Enter Your Text</label>
+                    <input type="text" id="neonText" name="neonText" placeholder="Smash Here!" minlength="3" required>
+                    <div id="textError" class="error-message"></div>
+                </div>
+                <div class="icon-button">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-equals"></i>
+                </div>
+                <p>3 or more characters are required for this size, please add more characters.</p>
+                <div class="form-group">
+                    <label>Pick Your Font</label>
+                    <div class="font-options">
+                        <button type="button" class="font-button">Buralbry</button>
+                        <button type="button" class="font-button">Barcelony</button>
+                        <button type="button" class="font-button">Dolcivita</button>
+
+                        <button type="button" class="font-button">Dolcivita</button>
+                        <button type="button" class="font-button">Barcelony</button>
+                        <button type="button" class="font-button">Barcelony</button>
+
+                        <button type="button" class="font-button">Buralbry</button>
+                        <button type="button" class="font-button">Barcelony</button>
+                        <button type="button" class="font-button">Barcelony</button>
+
+                        <button type="button" class="font-button">Dolcivita</button>
+                        <button type="button" class="font-button">Dolcivita</button>
+                        <button type="button" class="font-button">Barcelony</button>
+
+                        <button type="button" class="font-button selected">Barcelony</button>
+                        <button type="button" class="font-button">Barcelony</button>
+                        <button type="button" class="font-button">Barcelony</button>
+
+                        <button type="button" class="font-button">Dolcivita</button>
+                        <button type="button" class="font-button">Barcelony</button>
+                        <button type="button" class="font-button">Barcelony</button>
+
+                         <button type="button" class="font-button">Dolcivita</button>
+                        <button type="button" class="font-button">Buralbry</button>
+                        <button type="button" class="font-button">Barcelony</button>
+
+                         <button type="button" class="font-button">Barcelony</button>
+                        <button type="button" class="font-button">Barcelony</button>
+                        <button type="button" class="font-button">Dolcivita</button>
+
+                         <button type="button" class="font-button">Dolcivita</button>
+                        <button type="button" class="font-button">Barcelony</button>
+                        <button type="button" class="font-button">Barcelony</button>
+
+                         <button type="button" class="font-button">Barcelony</button>
+                        <button type="button" class="font-button">Barcelony</button>
+                        <button type="button" class="font-button">Buralbry</button>
+
+                        <button type="button" class="font-button">Barcelony</button>
+                        <button type="button" class="font-button">Buralbry</button>
+                        <button type="button" class="font-button">Barcelony</button>
+                    </div>
+                </div>
+                <p>3 or characters are required for this size, please add characters.</p>
+                <button type="submit" class="done-button">Done</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const neonForm = document.getElementById('neonForm');
+        const neonText = document.getElementById('neonText');
+        const textError = document.getElementById('textError');
+        const fontButtons = document.querySelectorAll('.font-button');
+        const toggleSwitch = document.querySelector('.toggle-switch');
+
+        neonForm.addEventListener('submit', function(event) {
+            if (!neonText.validity.valid) {
+                textError.textContent = "Please enter at least 3 characters.";
+                event.preventDefault(); // Prevent form submission
+            } else {
+                textError.textContent = ""; // Clear error message
+            }
+        });
+
+        fontButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                fontButtons.forEach(btn => btn.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        toggleSwitch.addEventListener('click', function() {
+            this.classList.toggle('on');
+        });
+
+         neonText.addEventListener('input', function() {
+             const previewText = document.querySelector('.neon-preview');
+             previewText.textContent = this.value;
+         });
+    </script>
+</body>
+</html>
