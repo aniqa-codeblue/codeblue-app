@@ -46,7 +46,7 @@ input_field.drop_target_register(DND_FILES)
 input_field.dnd_bind('<<Drop>>', on_drop)
 
 # Create and place the upload button
-upload_button = tk.Button(center_frame, text="Upload File", command=upload_file, bg="black", fg="white", font=("Arial", 11))
+upload_button = tk.Button(center_frame, text="Browse from PC", command=upload_file, bg="black", fg="white", font=("Arial", 11))
 upload_button.pack(pady=14)
 
 # Create and place the submit button

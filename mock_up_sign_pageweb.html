@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signize Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            padding: 10px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .left-side {
+            width: 50%;
+            padding: 10px;
+        }
+
+        .right-side {
+            width: 50%;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form Styling */
+        form {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 95%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .checkbox-label {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .mockup-types {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .mockup-types img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #f0ad4e;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #eea236;
+        }
+
+        /* Image Upload */
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #777;
+            cursor: pointer;
+        }
+
+        .upload-area input[type="file"] {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-side,
+            .right-side {
+                width: 100%;
+            }
+
+            .mockup-types {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Additional Styles */
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            color: #555;
+            text-align: center;
+        }
+                
+        /* Why Choose Us Section */
+        .why-choose-us {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .feature {
+            width: 250px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .feature img {
+            max-width: 60px;
+            margin-bottom: 10px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: -5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>UPLOAD YOUR LOGO FOR FREE BUSINESS SIGN MOCKUP & QUOTE</h1>
+    <p>Fill out this form or call us @ 1 (914)-303-1803 to get a free quote and mockup!</p>
+
+    <div class="container">
+        <div class="left-side">
+             <!-- Dummy Images for Left Side -->
+            <img src="https://www.signze.com/wp-content/uploads/2023/11/3D-Blade-Sign-scaled.jpg" alt="3D Blade Sign" style="width:100%; margin-bottom: 10px;">
+            <img src="https://www.signze.com/wp-content/uploads/2023/11/Sky-Hair-1-scaled.jpg" alt="Acrylic Front-lit" style="width:100%; margin-bottom: 10px;">
+            <img src="https://www.signze.com/wp-content/uploads/2023/11/Acrylic-Letters-scaled.jpg" alt="3D Metal Back-lit" style="width:100%; margin-bottom: 10px;">
+            <img src="https://www.signze.com/wp-content/uploads/2023/11/LightBox-scaled.jpg" alt="2D Metal Letters" style="width:100%; margin-bottom: 10px;">
+            <img src="https://www.signze.com/wp-content/uploads/2023/11/2D-Metal-Letters-scaled.jpg" alt="Acrylic Letters" style="width:100%; margin-bottom: 10px;">
+            <img src="https://www.signze.com/wp-content/uploads/2023/11/Acrylic-Front-Lit-scaled.jpg" alt="Lightbox" style="width:100%; margin-bottom: 10px;">
+
+        </div>
+
+        <div class="right-side">
+            <form id="signForm">
+                <label for="name">NAME *</label>
+                <input type="text" id="name" name="name" placeholder="Full Name" required>
+                <div id="nameError" class="error"></div>
+
+                <label for="email">EMAIL *</label>
+                <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                <div id="emailError" class="error"></div>
+
+                <label for="phone">PHONE NUMBER *</label>
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                <div id="phoneError" class="error"></div>
+
+                <label>PLACEMENTS</label>
+                <div>
+                    <input type="checkbox" id="indoor" name="placement" value="indoor">
+                    <label for="indoor" class="checkbox-label">INDOOR</label>
+
+                    <input type="checkbox" id="outdoor" name="placement" value="outdoor">
+                    <label for="outdoor" class="checkbox-label">OUTDOOR</label>
+                </div>
+
+                <label>SELECT MOCKUPTYPES *</label>
+                <div class="mockup-types">
+                    <img src="https://www.signze.com/wp-content/uploads/2023/11/3D-Blade-Sign-scaled.jpg" alt="3D Blade Sign">
+                    <img src="https://www.signze.com/wp-content/uploads/2023/11/Acrylic-Front-lit-scaled.jpg" alt="Acrylic Front-lit">
+                    <img src="https://www.signze.com/wp-content/uploads/2023/11/3D-Metal-Back-lit-scaled.jpg" alt="3D Metal Back-lit">
+                    <img src="https://www.signze.com/wp-content/uploads/2023/11/2D-Metal-Letters-scaled.jpg" alt="2D Metal Letters">
+                    <img src="https://www.signze.com/wp-content/uploads/2023/11/Acrylic-Letters-scaled.jpg" alt="Acrylic Letters">
+                    <img src="https://www.signze.com/wp-content/uploads/2023/11/LightBox-scaled.jpg" alt="Lightbox">
+                </div>
+
+                <label for="details">DETAILS *</label>
+                <textarea id="details" name="details" rows="4" placeholder="For a quick turn around, please share budget, size dimensions and any other design/sign specifications you have in your mind" required></textarea>
+                <div id="detailsError" class="error"></div>
+
+                <label for="image_url">UPLOAD AN IMAGE*</label>
+                <input type="text" id="image_url" name="image_url" placeholder="URL of your Business/Logo or Image File">
+                <div class="upload-area">
+                    <input type="file" id="image_file" name="image_file">
+                    <label for="image_file">
+                        Upload Images
+                    </label>
+                </div>
+                <p>Select Images<br>
+                Max file size: 20000 KB | Allow file types: ai, eps, gif, jpg, jpeg, pdf, png, tiff</p>
+
+                <button type="submit">GET FREE QUOTES & MOCKUPS</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="why-choose-us">
+        <h2>WHY SHOULD YOU CHOOSE SIGNIZE?</h2>
+        <div class="features">
+            <div class="feature">
+                
+                <h3>CUSTOMER SUPPORT</h3>
+                <p>24/7 Assistance Available</p>
+                <p>Experience round-the-clock excellence with our 24/7 Customer Support, always ready to assist you.</p>
+            </div>
+
+            <div class="feature">
+                
+                <h3>SECURE PAYMENT</h3>
+                <p>Safe & Hassle Free</p>
+                <p>Secure PaymentEnjoy peace of mind with our encrypted and fully secure payment system.</p>
+            </div>
+
+            <div class="feature">
+                
+                <h3>QUICK TURNAROUND</h3>
+                <p>10 working days</p>
+                <p>Experience efficiency at its best with our swift processing times, ensuring the highest quality of service.</p>
+            </div>
+
+            <div class="feature">
+                
+                <h3>WORLDWIDE SHIPPING</h3>
+                <p>Free shipping</p>
+                <p>Explore our global reach with free shipping across the globe, bringing your signage right to your doorstep.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signForm').addEventListener('submit', function(event) {
+            // Prevent the form from submitting
+            event.preventDefault();
+
+            // Validate name
+            var name = document.getElementById('name').value;
+            if (!name) {
+                document.getElementById('nameError').textContent = 'Name is required';
+                return;
+            } else {
+                document.getElementById('nameError').textContent = '';
+            }
+
+            // Validate email
+            var email = document.getElementById('email').value;
+            if (!email) {
+                document.getElementById('emailError').textContent = 'Email is required';
+                return;
+            } else if (!isValidEmail(email)) {
+                document.getElementById('emailError').textContent = 'Invalid email format';
+                return;
+            } else {
+                document.getElementById('emailError').textContent = '';
+            }
+
+            // Validate phone
+            var phone = document.getElementById('phone').value;
+            if (!phone) {
+                document.getElementById('phoneError').textContent = 'Phone number is required';
+                return;
+            } else {
+                document.getElementById('phoneError').textContent = '';
+            }
+
+            // Validate details
+            var details = document.getElementById('details').value;
+            if (!details) {
+                document.getElementById('detailsError').textContent = 'Details are required';
+                return;
+            } else {
+                document.getElementById('detailsError').textContent = '';
+            }
+
+            // If all validations pass, you can submit the form
+            alert('Form submitted successfully!');
+        });
+
+        function isValidEmail(email) {
+            // Basic email validation regex
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+
+</body>
+</html>

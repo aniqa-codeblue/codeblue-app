@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Sign Designer</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .left-panel {
+            flex: 1;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .neon-text {
+            font-size: 4rem;
+            color: #ff69b4;
+            text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4, 0 0 50px #ff69b4, 0 0 60px #ff69b4;
+        }
+
+        .dimensions {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 0.8rem;
+            color: #fff;
+        }
+
+        .right-panel {
+            flex: 0.3;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        .font-selection {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .font-option {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .font-option.selected {
+            background-color: #ff69b4;
+            color: #fff;
+        }
+
+        .font-option:hover {
+            background-color: #e6e6e6;
+        }
+
+        .button {
+            background-color: #ff69b4;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #e91e63;
+        }
+
+        .toggle {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .price {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .help-bubble {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: #ff69b4;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="neon-text">Smash Here!</div>
+            <div class="dimensions">Width: 27in, Height: 4in</div>
+            <div class="toggle">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        <div class="right-panel">
+            <h2>Unleash Your Creativity</h2>
+            <div class="form-group">
+                <label for="textInput">Enter Your Text:</label>
+                <input type="text" id="textInput" value="Smash here!" required>
+                <div class="error-message" id="textError"></div>
+            </div>
+            <div class="form-group">
+                <label for="fontSelection">Pick Your Font:</label>
+                <div class="font-selection">
+                    <div class="font-option" id="barcelonaFont" data-font="barcelona">Barcelony</div>
+                    <div class="font-option" id="dolcivitaFont" data-font="dolcivita">Dolcivita</div>
+                    <div class="font-option" id="buralbryFont" data-font="buralbry">Buralbry</div>
+                </div>
+            </div>
+            <button class="button" id="doneButton">Done</button>
+            <div class="price">$0.00</div>
+            <div class="help-bubble">Need help? Chat with us!</div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for form validation and functionality
+        const textInput = document.getElementById("textInput");
+        const textError = document.getElementById("textError");
+        const barcelonaFont = document.getElementById("barcelonaFont");
+        const dolcivitaFont = document.getElementById("dolcivitaFont");
+        const buralbryFont = document.getElementById("buralbryFont");
+        const doneButton = document.getElementById("doneButton");
+
+        // ... (Rest of the JavaScript code remains the same)
+    </script>
+</body>
+</html>
